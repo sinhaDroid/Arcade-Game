@@ -1,30 +1,30 @@
-const X = 120;
-const Y =100;
+var X = 101;
+var Y = 83;
 
 // Class to represent all objects in game
 var PlayObject = function (initX, initY) {
     // body...
     this.x = this.gridXToPixels(initX);
     this.y = this.gridYToPixels(initY);
-}
+};
 
 // Grid X prototype
 PlayObject.prototype.gridXToPixels = function (gridX) {
     // body...
     return X * gridX;
-}
+};
 
 // Grid Y prototype
 PlayObject.prototype.gridYToPixels = function (gridY) {
     // body...
     return -20 + Y * gridY;
-}
+};
 
 // Random Number
 PlayObject.prototype.getRandomNumber = function (min, max) {
     // body...
     return Math.floor((Math.random() * max) + min);
-}
+};
 
 // Enemies our player must avoid
 var Enemy = function(x,y) {
@@ -74,7 +74,7 @@ var Hero = function (x,y) {
     // The image/sprite for our hero/player, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
-}
+};
 
 // Create Object
 Hero.prototype = Object.create(PlayObject.prototype);
@@ -87,7 +87,7 @@ Hero.prototype.finished = function () {
         return true;
     }
     return false;
-}
+};
 
 // Crashed with enemies
 Hero.prototype.crashed = function () {
@@ -101,7 +101,7 @@ Hero.prototype.crashed = function () {
         }
     }
     return false;
-}
+};
 
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -112,13 +112,13 @@ Hero.prototype.update = function () {
         this.x = this.gridXToPixels(2);
         this.y = this.gridYToPixels(4);
     }
-}
+};
 
 // Draw the hero on the screen
 Hero.prototype.render = function () {
     // body...
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Handle Input Method to control hero
 Hero.prototype.handleInput = function (position) {
@@ -142,7 +142,7 @@ Hero.prototype.handleInput = function (position) {
     else if (this.y < this.gridYToPixels(0)) this.y = this.gridYToPixels(0);
     else if (this.y > this.gridYToPixels(5)) this.y = this.gridYToPixels(5);
     else { /* We are inside the grid bounds. Do nothing */ }
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy/zombies objects in an array called allEnemies
